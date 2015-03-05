@@ -1,25 +1,30 @@
 {
   "name": "MwdNodeProject",
   "version": "1.0.0",
-  "description": "",
+  "description": "ITS GOOD",
   "main": "release.js",
   "dependencies": {
     "mssql": "^2.1.1",
     "total.js": "^1.7.2"
-  }, 
-  "engines": {  "node": "0.10.x"  },
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node release.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/h23571113/mwdgroup"
+    "url": "https://github.com/h23571113/mwdnode"
   },
   "author": "hamed",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/h23571113/mwdgroup/issues"
+    "url": "https://github.com/h23571113/mwdnode/issues"
   },
-  "homepage": "https://github.com/h23571113/mwdgroup"
+  "homepage": "https://github.com/h23571113/mwdnode",
+  "keywords": [
+    "Total.Js"
+  ]
 }
