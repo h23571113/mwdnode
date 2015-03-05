@@ -1,0 +1,49 @@
+﻿@{meta('تغییر مشخصات', 'Description (optional)', 'Keywords (optional)')}
+
+<a href="/Exit">خروج</a>
+
+<form class="form-horizontal col-sm-offset-3 col-lg-offset-3 container" role="form" method="post" action="/Registered">
+
+    <div class="form-group">
+
+        <div class="col-sm-4 col-lg-4  col-xs-8">
+            <input type="text" class="form-control" id="name" value="@{model.Name}" placeholder="نام خود را وارد کنید" name="name">
+        </div>
+        <label class="control-label col-sm-2" for="name">نام:</label>
+    </div>
+    <div class="form-group">
+
+        <div class="col-sm-4 col-lg-4 col-xs-8">
+            <input type="text" class="form-control" id="family" value="@{model.Family}" placeholder="نام خانوادگی خود را وارد کنید" name="family">
+        </div>
+        <label class="control-label col-sm-2" for="family">نام خانوادگی:</label>
+
+    </div>
+    <div class="form-group">
+
+        <div class="col-sm-4 col-lg-4 col-xs-8">
+            <input type="email" class="form-control" id="email" value="@{model.Email}" placeholder="ایمیل خود را وارد کنید" name="email">
+        </div>
+        <label class="control-label col-sm-2" for="email">ایمیل:</label>
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-sm-4 col-lg-4 col-xs-8">
+            <input type="password" class="form-control" id="pwd1" value="@{model.Password}" placeholder="رمز عبور خود را وارد کنید" name="pass">
+        </div>
+        <label class="control-label col-sm-2" for="pwd1">رمز عبور:</label>
+    </div>
+    <div class="form-group">
+
+        <div class="col-sm-4 col-lg-4 col-xs-8">
+            <input type="password" class="form-control" id="pwd2" placeholder="رمز عبور خود را تکرار کنید" name="repass">
+        </div>
+        <label class="control-label col-sm-2" for="pwd2">تکرار رمز :</label>
+    </div>
+    <div class="form-group ">
+        <div class=" col-sm-offset-3 col-lg-offset-3 col-xs-offset-3 col-md-offset-3">
+            <button type="submit" class="btn btn-default col-sm-2 col-lg-2 col-xs-6 col-md-2">ثبت تغییرات</button>
+        </div>
+    </div>
+</form>

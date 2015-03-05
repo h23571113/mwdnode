@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{meta}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    @{css('default.css')}
+    @{css('pure-drawer.min.css')}
+    @{css('bootstrap.min.css')}
+    @{head}
+    @{js('jquery.min.js')}
+    @{js('default.js')}
+    @{js('bootstrap.min.js')}
+    @{js('validator.min.js')}
+    @{favicon('favicon.ico')}
+</head>
+<body>
+   
+    <div class="pure-container" data-effect="pure-effect-scaleRotate">
+        <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left" />
+        <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
+        <nav class="pure-drawer" data-position="left">
+            <div id="link-container">
+                <div class="large-12 columns">
+                    <ul class="nav-primary">
+                        <li><a href="/">خانه</a></li>
+                        <li><a href="/Login">ورود</a></li>
+                        <li><a href="/Register">عضویت</a></li>
+                        <li><a href="#"> Node.js درباره</a></li>
+                        <li><a target="_blank" href="http://www.mwdgroup.ir">ارتباط با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="pure-pusher-container">
+            <div class="pure-pusher">
+                <p style="width: 300px; margin: 100px auto;">
+                    <nav id="navigation">
+                        <ul>
+                            <li><a href="/">خانه</a></li>
+                            <li><a href="/Login">ورود</a></li>
+                            <li><a href="/Register">عضویت</a></li>
+                            <li><a href="#"> Node.js درباره</a></li>
+                            <li><a target="_blank" href="http://www.mwdgroup.ir">ارتباط با ما</a></li>
+                        </ul>
+                    </nav>
+                
+                	@{body}</p>
+            </div>
+        </div>
+
+        <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
+    </div>
+</body>
+</html>
