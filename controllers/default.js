@@ -11,15 +11,6 @@
     // F.route('/');
 };
 
-var sql = require('mssql');
-
-var config = {
-    user: 'sia',
-    password: '54321',
-    server: '30Amac',
-    database: 'Node'
-}
-
 function view_index() {
     var self = this;
     self.view('index');
