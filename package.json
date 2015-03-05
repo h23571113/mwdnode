@@ -2,14 +2,15 @@
   "name": "MwdNodeProject",
   "version": "1.0.0",
   "description": "",
-  "main": "debug.js",
+  "main": "release.js",
   "dependencies": {
     "mssql": "^2.1.1",
     "total.js": "^1.7.2"
-  },
+  }, 
+  "engines": {  "node": "0.10.x"  },
   "devDependencies": {},
   "scripts": {
-    "test": "node debug.js"
+    "test": "node release.js"
   },
   "repository": {
     "type": "git",

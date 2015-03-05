@@ -1,3 +1,5 @@
-default-ip                      : 127.0.0.1
-default-port                    : 8000
-allow-custom-titles             : true
+// IMPORTANT FOR HEROKU
+default-ip                     : auto
+default-port                   : auto
+default-image-converter        : im
+allow-custom-titles            : true
