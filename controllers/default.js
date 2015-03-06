@@ -12,7 +12,8 @@
 };
 
 var MongoClient = require('mongodb').MongoClient,
-    assert = require('assert');
+    assert = require('assert'),
+    ObjectID = require('mongodb').ObjectID;
 
 var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
 
@@ -183,7 +184,9 @@ function view_Edit() {
         assert.equal(null, err);
         var collection = db.collection('login');
 
-        collection.findOne({ _id: model.id }, {}, function (err, docs) {
+        console.log(model.id);
+
+        collection.findOne({ '_id': model.id }, {}, function (err, docs) {
             if (docs == null) {
                 self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
             }
