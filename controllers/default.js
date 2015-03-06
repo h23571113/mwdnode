@@ -144,7 +144,7 @@ function view_Registered() {
                 console.log(doc.toString());
                 collection.insert(doc, { w: 1 }, function (err, result) {
                     if (err)
-                        self.view('Register', err.toString());
+                        self.view('Register', "خطایی رخ داد");
                     else
                         self.view('Register', "اطلاعات با موفقیت ثبت گردید");
 
