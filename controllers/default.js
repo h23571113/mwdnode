@@ -20,69 +20,6 @@ var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
 
 function view_index() {
     var self = this;
-
-    //MongoClient.connect(url, function (err, db) {
-    //    assert.equal(null, err);
-    //    var collection = db.collection('login');
-
-    //var cursor = collection.find({ 'id': '2' });
-    //var rows = 0;
-
-    //cursor.count(function (err, count) {
-    //    rows = count;
-    //});
-
-
-    //var result = cursor.toArray(function (err, items) {
-    //    for (var i = 0 ; i < rows; i++)
-    //        console.log(items[i].email);
-    //});
-
-    //collection.findOne({ 'id': '2' }, function (err, item) {
-    //    if (err)
-    //        console.log(err.toString());
-    //    else
-    //        console.log(item.toString());
-    //});
-
-    //    collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
-    //        if (doc == null) {
-    //            // do whatever you need to do if it's not there
-    //            console.log("no");
-    //            self.view('Register', "این ایمیل قبلا نثبت شده");
-    //        } else {
-    //            // do whatever you need to if it is there
-    //            console.log("yes");
-    //            self.view('Register', "این ایمیل قبلا ثبت شده");
-    //        }
-    //        db.close();
-    //    });
-
-
-    //});
-    //});
-
-
-
-    //console.log(cursor[1]);
-
-    //cursor.count(function (err, count) {
-    //    console.log("Total matches: " + count);
-    //    db.close();
-    //});
-
-
-    //var doc = { 'id': '2', 'email': 'hamed.h.1111@gmail.com', 'name': 'Hamed', 'family': 'hosseini', 'password': '123456' };
-
-    //collection.insert(doc, { w: 1 }, function (err, result) {
-    //    if (err)
-    //        console.log(err.toString());
-    //    else
-    //        console.log(result.toString());
-    //});
-
-    //});
-
     self.view('index');
 }
 
@@ -219,7 +156,7 @@ function view_Edit() {
 function view_Exit() {
     var self = this;
     self.res.cookie('mwdcookie', "Deleted", new Date().add('day', -1));
-    self.view("index");
+    self.redirect("/");
 }
 
 
