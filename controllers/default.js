@@ -12,7 +12,7 @@
 };
 
 //var Db = require('mongodb').Db,
-//    MongoClient = require('mongodb').MongoClient,
+var MongoClient = require('mongodb').MongoClient;
 //    Server = require('mongodb').Server,
 //    ReplSetServers = require('mongodb').ReplSetServers,
 //    ObjectID = require('mongodb').ObjectID,
@@ -23,7 +23,7 @@
 //    BSON = require('mongodb').pure().BSON,
 //    assert = require('assert');
 
-//var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
+var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
 
 
 function view_index() {
