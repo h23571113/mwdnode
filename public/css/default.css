@@ -221,3 +221,10 @@ article {
         color: rgb(31, 192, 142);
     }
 }
+
+@media only screen and (max-width : 380px) {
+    .mybtn{
+        margin-left:0px;
+        margin-right:1vw;
+    }
+}
