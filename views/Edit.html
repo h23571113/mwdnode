@@ -2,19 +2,21 @@
 
 <a href="/Exit">خروج</a>
 
-<form class="form-horizontal col-sm-offset-3 col-lg-offset-3 container" role="form" method="post" action="/Registered">
+<form class="form-horizontal col-sm-offset-3 col-lg-offset-3 container" data-toggle="validator" role="form" method="post" action="/Registered">
 
     <div class="form-group">
 
         <div class="col-sm-4 col-lg-4  col-xs-8">
-            <input type="text" class="form-control" id="name" value="@{model.Name}" placeholder="نام خود را وارد کنید" name="name">
+            <input type="text" class="form-control" id="name" data-error="پر کردن این فیلد الزامی است" value="@{model.name}" placeholder="نام خود را وارد کنید" name="name" required>
+            <div class="help-block with-errors"></div>
         </div>
         <label class="control-label col-sm-2" for="name">نام:</label>
     </div>
     <div class="form-group">
 
         <div class="col-sm-4 col-lg-4 col-xs-8">
-            <input type="text" class="form-control" id="family" value="@{model.Family}" placeholder="نام خانوادگی خود را وارد کنید" name="family">
+            <input type="text" class="form-control" id="family" data-error="پر کردن این فیلد الزامی است" value="@{model.family}" placeholder="نام خانوادگی خود را وارد کنید" name="family" required>
+            <div class="help-block with-errors"></div>
         </div>
         <label class="control-label col-sm-2" for="family">نام خانوادگی:</label>
 
@@ -22,7 +24,8 @@
     <div class="form-group">
 
         <div class="col-sm-4 col-lg-4 col-xs-8">
-            <input type="email" class="form-control" id="email" value="@{model.Email}" placeholder="ایمیل خود را وارد کنید" name="email">
+            <input type="email" class="form-control" id="email" data-error="ایمیل وارد شده نامعتبر است" value="@{model.email}" placeholder="ایمیل خود را وارد کنید" name="email" required>
+            <div class="help-block with-errors"></div>
         </div>
         <label class="control-label col-sm-2" for="email">ایمیل:</label>
     </div>
@@ -30,14 +33,16 @@
     <div class="form-group">
 
         <div class="col-sm-4 col-lg-4 col-xs-8">
-            <input type="password" class="form-control" id="pwd1" value="@{model.Password}" placeholder="رمز عبور خود را وارد کنید" name="pass">
+            <input type="password" class="form-control" id="pwd1" data-minlength="6" data-error="رمز عبور باید بیش از 6 کاراکتر باشد" value="@{model.password}" placeholder="رمز عبور خود را وارد کنید" name="pass" required>
+            <div class="help-block with-errors"></div>
         </div>
         <label class="control-label col-sm-2" for="pwd1">رمز عبور:</label>
     </div>
     <div class="form-group">
 
         <div class="col-sm-4 col-lg-4 col-xs-8">
-            <input type="password" class="form-control" id="pwd2" placeholder="رمز عبور خود را تکرار کنید" name="repass">
+            <input type="password" class="form-control" id="pwd2" data-match="#pwd1" data-error="پر کردن این فیلد الزامی است" data-match-error="تکرار رمز عبور با رمز عبور یکسان نیست" placeholder="رمز عبور خود را تکرار کنید" name="repass" required>
+            <div class="help-block with-errors"></div>
         </div>
         <label class="control-label col-sm-2" for="pwd2">تکرار رمز :</label>
     </div>
