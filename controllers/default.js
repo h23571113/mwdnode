@@ -11,8 +11,84 @@
     // F.route('/');
 };
 
+var Db = require('mongodb').Db,
+    MongoClient = require('mongodb').MongoClient,
+    Server = require('mongodb').Server,
+    ReplSetServers = require('mongodb').ReplSetServers,
+    ObjectID = require('mongodb').ObjectID,
+    Binary = require('mongodb').Binary,
+    GridStore = require('mongodb').GridStore,
+    Grid = require('mongodb').Grid,
+    Code = require('mongodb').Code,
+    BSON = require('mongodb').pure().BSON,
+    assert = require('assert');
+
+var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
+
+
 function view_index() {
     var self = this;
+
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('login');
+
+        //var cursor = collection.find({ 'id': '2' });
+        //var rows = 0;
+
+        //cursor.count(function (err, count) {
+        //    rows = count;
+        //});
+
+
+        //var result = cursor.toArray(function (err, items) {
+        //    for (var i = 0 ; i < rows; i++)
+        //        console.log(items[i].email);
+        //});
+
+        //collection.findOne({ 'id': '2' }, function (err, item) {
+        //    if (err)
+        //        console.log(err.toString());
+        //    else
+        //        console.log(item.toString());
+        //});
+
+        collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
+            if (doc == null) {
+                // do whatever you need to do if it's not there
+                console.log('not found ');
+            } else {
+                // do whatever you need to if it is there
+                console.log("founded");
+            }
+            db.close();
+        });
+
+
+    });
+    //});
+
+
+
+    //console.log(cursor[1]);
+
+    //cursor.count(function (err, count) {
+    //    console.log("Total matches: " + count);
+    //    db.close();
+    //});
+
+
+    //var doc = { 'id': '2', 'email': 'hamed.h.1111@gmail.com', 'name': 'Hamed', 'family': 'hosseini', 'password': '123456' };
+
+    //collection.insert(doc, { w: 1 }, function (err, result) {
+    //    if (err)
+    //        console.log(err.toString());
+    //    else
+    //        console.log(result.toString());
+    //});
+
+    //});
+
     self.view('index');
 }
 
@@ -48,32 +124,68 @@ function view_Registered() {
     var self = this;
     var model = self.post;
 
-    var connection = new sql.Connection(config, function (err) {
-        var request = connection.request();
-        request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "'", function (err, rows_numer) {
-            if (err)
-                self.view('Register', err.toString());
-            else {
-                var num_of_rows = rows_numer[0].count;
-                if (num_of_rows == 0) {
-                    request.query("INSERT INTO RegisterTBL (Name,Family,Email,Password) VALUES ('" + model.name + "','" + model.family + "','" + model.email + "','" + model.pass + "');", function (err, rows) {
-                        if (err) {
-                            self.view('Register', err.toString());
-                        }
-                        else {
-                            self.view('Register', "اطلاعات با موفقیت ثبت شد");
-                        }
-                    });
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('login');
 
-                }
-                else {
-                    self.view('Register', "این ایمیل قبلا ثبت شده");
-                }
+        //var id = 0;
 
+        collection.findOne({ 'email': model.email }, function (err, doc) {
+            if (doc == null) {
+                // do whatever you need to do if it's not there
+                self.view('Register', "این ایمیل قبلا ثبت نشده");
+            } else {
+                // do whatever you need to if it is there
+                self.view('Register', "این ایمیل قبلا ثبت شده");
             }
-
+            db.close();
         });
-    });
+
+    //    collection.find().sort({ _id: -1 }, function (err, cursor) {
+    //        if (err)
+    //            console.log(err.toString());
+    //        else
+    //            cursor.toArray(function (error, items) {
+    //                id = parseInt(items[0].id) + 1;
+    //                var doc = { 'id': id, 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
+    //            });
+    //    });
+
+    //    collection.insert(doc, { w: 1 }, function (err, result) {
+    //        if (err)
+    //            console.log(err.toString());
+    //    });
+    //    console.log(result.toString());
+    //});
+
+});
+
+//var connection = new sql.Connection(config, function (err) {
+//    var request = connection.request();
+//    request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "'", function (err, rows_numer) {
+//        if (err)
+//            self.view('Register', err.toString());
+//        else {
+//            var num_of_rows = rows_numer[0].count;
+//            if (num_of_rows == 0) {
+//                request.query("INSERT INTO RegisterTBL (Name,Family,Email,Password) VALUES ('" + model.name + "','" + model.family + "','" + model.email + "','" + model.pass + "');", function (err, rows) {
+//                    if (err) {
+//                        self.view('Register', err.toString());
+//                    }
+//                    else {
+//                        self.view('Register', "اطلاعات با موفقیت ثبت شد");
+//                    }
+//                });
+
+//            }
+//            else {
+//                self.view('Register', "این ایمیل قبلا ثبت شده");
+//            }
+
+//        }
+
+//    });
+//});
 }
 
 function view_Loggedin() {
@@ -131,3 +243,22 @@ function view_Exit() {
     self.res.cookie('mwdcookie', "Deleted", new Date().add('day', -1));
     self.view("Index");
 }
+
+
+
+
+//getting query listh using mongodb
+//var collection = db.collection('login');
+
+//var cursor = collection.find({ 'id': '2' });
+//var rows = 0;
+
+//cursor.count(function (err, count) {
+//    rows = count;
+//});
+
+
+//var result = cursor.toArray(function (err, items) {
+//    for (var i = 0 ; i < rows; i++)
+//        console.log(items[i].email);
+//});
