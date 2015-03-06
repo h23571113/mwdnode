@@ -140,12 +140,9 @@ function view_Registered() {
             if (docs == null) {
                 console.log("------------------------1------------------------");
                 // do whatever you need to do if it's not there
-                doc = { 'id': '4', 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
+                doc = { 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
                 console.log(doc.toString());
-                collection.insert(doc, { w: 1 }, function (err, result) {
-                    if (err)
-                        self.view('Register', "خطایی رخ داد");
-                    else
+                collection.insert(doc, function (err, result) {
                         self.view('Register', "اطلاعات با موفقیت ثبت گردید");
 
                 });
