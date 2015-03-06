@@ -138,90 +138,72 @@ function view_Registered() {
 
         collection.findOne({ 'email': model.email }, function (err, docs) {
             if (docs == null) {
-                console.log("------------------------1------------------------");
-                // do whatever you need to do if it's not there
                 doc = { 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
                 console.log(doc.toString());
                 collection.insert(doc, function (err, result) {
-                        self.view('Register', "اطلاعات با موفقیت ثبت گردید");
-
+                    self.view('Register', "اطلاعات با موفقیت ثبت گردید");
                 });
-                }
+            }
             else {
-                // do whatever you need to if it is there
                 self.view('Register', "این ایمیل قبلا ثبت شده");
             }
             db.close();
         });
-
-
-
-
-        //    console.log(result.toString());
-        //});
-
     });
-
-    //var connection = new sql.Connection(config, function (err) {
-    //    var request = connection.request();
-    //    request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "'", function (err, rows_numer) {
-    //        if (err)
-    //            self.view('Register', err.toString());
-    //        else {
-    //            var num_of_rows = rows_numer[0].count;
-    //            if (num_of_rows == 0) {
-    //                request.query("INSERT INTO RegisterTBL (Name,Family,Email,Password) VALUES ('" + model.name + "','" + model.family + "','" + model.email + "','" + model.pass + "');", function (err, rows) {
-    //                    if (err) {
-    //                        self.view('Register', err.toString());
-    //                    }
-    //                    else {
-    //                        self.view('Register', "اطلاعات با موفقیت ثبت شد");
-    //                    }
-    //                });
-
-    //            }
-    //            else {
-    //                self.view('Register', "این ایمیل قبلا ثبت شده");
-    //            }
-
-    //        }
-
-    //    });
-    //});
 }
 
 function view_Loggedin() {
     var self = this;
     var model = self.post;
 
-    var connection = new sql.Connection(config, function (err) {
-        var request = connection.request();
-        request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "' AND Password ='" + model.pass + "'", function (err, rows_numer) {
-            if (err)
-                self.view('Login', err.toString());
-            else {
-                var num_of_rows = rows_numer[0].count;
-                if (num_of_rows == 0) {
-                    self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
-                }
-                else {
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('login');
 
-
-                    request.query("select * from RegisterTBL where Email ='" + model.email + "' AND Password ='" + model.pass + "'", function (err, infos) {
-                        if (err)
-                            self.view('Login', err.toString());
-                        else {
-                            var myinfo = infos[0];
-                            if (model.check == "checked") {
-                                self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
-                            }
-                            self.view('Show', myinfo);
-                        }
-                    });
-                }
+        collection.findOne({ 'email': model.email, 'password': model.pass }, function (err, docs) {
+            if (docs == null) {
+                self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
             }
+            else {
+                if (model.check == "checked") {
+                    self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
+                }
+                self.view('Login', docs[0]);
+            }
+            db.close();
         });
     });
+
+
+
+    //var connection = new sql.Connection(config, function (err) {
+    //    var request = connection.request();
+    //    request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "' AND Password ='" + model.pass + "'", function (err, rows_numer) {
+    //        if (err)
+    //            self.view('Login', err.toString());
+    //        else {
+    //            var num_of_rows = rows_numer[0].count;
+    //            if (num_of_rows == 0) {
+    //                self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
+    //            }
+    //            else {
+
+
+    //                request.query("select * from RegisterTBL where Email ='" + model.email + "' AND Password ='" + model.pass + "'", function (err, infos) {
+    //                    if (err)
+    //                        self.view('Login', err.toString());
+    //                    else {
+    //                        var myinfo = infos[0];
+    //                        if (model.check == "checked") {
+    //                            self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
+    //                        }
+    //                        self.view('Show', myinfo);
+    //                    }
+    //                });
+    //            }
+    //        }
+    //    });
+    //});
 }
 
 function view_Edit() {
