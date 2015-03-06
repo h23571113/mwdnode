@@ -124,11 +124,13 @@ function view_Registered() {
 
         collection.findOne({ 'email': model.email }, function (err, docs) {
             if (docs == null) {
+                console.log("------------------------1------------------------");
                 // do whatever you need to do if it's not there
                 collection.find().sort({ _id: -1 }, function (err, cursor) {
                     if (err)
                         self.view('Register', err.toString());
                     else {
+                        console.log("------------------------2------------------------");
                         cursor.toArray(function (error, items) {
                             id = (parseInt(items[0].id) + 1).toString();
                             var doc = { 'id': id, 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
