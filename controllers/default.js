@@ -170,9 +170,7 @@ function view_Loggedin() {
                 if (model.check == "checked") {
                     self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
                 }
-                console.log("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["+docs.name+"]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
-                
-                self.view('Login');
+                self.view('Show',docs);
             }
             db.close();
         });
