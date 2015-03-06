@@ -162,9 +162,11 @@ function view_Loggedin() {
 
         collection.findOne({ 'email': model.email, 'password': model.pass }, function (err, docs) {
             if (docs == null) {
+                console.log("if");
                 self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
             }
             else {
+                console.log("else");
                 if (model.check == "checked") {
                     self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
                 }
