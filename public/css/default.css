@@ -222,16 +222,16 @@ article {
     form label {
         color: rgb(31, 192, 142);
     }
+
+    article {
+        font-size: 8vw;
+        margin-left: 14vw;
+    }
 }
 
 @media only screen and (max-width : 380px) {
     .mybtn {
         margin-left: 0px;
         margin-right: 1vw;
-    }
-
-    article {
-        font-size: 8vw;
-        margin-left: 14vw;
     }
 }
