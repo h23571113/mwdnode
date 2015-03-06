@@ -121,31 +121,36 @@ function view_Registered() {
         assert.equal(null, err);
         var collection = db.collection('login');
         var id = 0;
+        var doc;
+
+        //collection.find().sort({ _id: -1 }, function (err, cursor) {
+        //    if (err)
+        //        self.view('Register', err.toString());
+        //    else {
+        //        console.log("------------------------2------------------------");
+        //        cursor.toArray(function (error, items) {
+        //            id = (parseInt(items[0].id) + 1).toString();
+        //            console.log("------------------------" + id + "------------------------");
+        //            db.close();
+        //        });
+        //    }
+        //});
 
         collection.findOne({ 'email': model.email }, function (err, docs) {
             if (docs == null) {
                 console.log("------------------------1------------------------");
                 // do whatever you need to do if it's not there
-                collection.find().sort({ _id: -1 }, function (err, cursor) {
+                doc = { 'id': '4', 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
+                console.log(doc.toString());
+                collection.insert(doc, { w: 1 }, function (err, result) {
                     if (err)
                         self.view('Register', err.toString());
-                    else {
-                        console.log("------------------------2------------------------");
-                        cursor.toArray(function (error, items) {
-                            id = (parseInt(items[0].id) + 1).toString();
-                            var doc = { 'id': id, 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
-                        });
-                        collection.insert(doc, { w: 1 }, function (err, result) {
-                            if (err)
-                                self.view('Register', err.toString());
-                            else
-                                self.view('Register', "اطلاعات با موفقیت ثبت گردید");
-                        });
-                    }
+                    else
+                        self.view('Register', "اطلاعات با موفقیت ثبت گردید");
+
                 });
-
-
-            } else {
+                }
+            else {
                 // do whatever you need to if it is there
                 self.view('Register', "این ایمیل قبلا ثبت شده");
             }
