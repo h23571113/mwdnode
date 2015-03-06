@@ -4,7 +4,7 @@
   "description": "ITS GOOD",
   "main": "release.js",
   "dependencies": {
-    "mssql": "^2.1.1",
+    "mongodb": "~2.0",
     "total.js": "^1.7.2"
   },
   "engines": {
