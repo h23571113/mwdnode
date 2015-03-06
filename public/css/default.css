@@ -213,4 +213,7 @@ article {
     #messages {
         font-size: 6vw !important;
     }
+    form label{
+        color: rgb(31, 192, 142);
+    }
 }
