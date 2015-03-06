@@ -11,17 +11,8 @@
     // F.route('/');
 };
 
-//var Db = require('mongodb').Db,
-var MongoClient = require('mongodb').MongoClient;
-//    Server = require('mongodb').Server,
-//    ReplSetServers = require('mongodb').ReplSetServers,
-//    ObjectID = require('mongodb').ObjectID,
-//    Binary = require('mongodb').Binary,
-//    GridStore = require('mongodb').GridStore,
-//    Grid = require('mongodb').Grid,
-//    Code = require('mongodb').Code,
-//    BSON = require('mongodb').pure().BSON,
-//    assert = require('assert');
+var MongoClient = require('mongodb').MongoClient,
+    assert = require('assert');
 
 var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
 
@@ -56,9 +47,11 @@ function view_index() {
         collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
             if (doc == null) {
                 // do whatever you need to do if it's not there
+                console.log("no");
                 self.view('Register', "این ایمیل قبلا نثبت شده");
             } else {
                 // do whatever you need to if it is there
+                console.log("yes");
                 self.view('Register', "این ایمیل قبلا ثبت شده");
             }
             db.close();
