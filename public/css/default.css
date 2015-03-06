@@ -208,7 +208,8 @@ article {
     #navigation li {
         font-size: 3vw;
     }
-    .content{
+
+    .content {
         margin-top: 32vh;
     }
 }
@@ -217,14 +218,20 @@ article {
     #messages {
         font-size: 6vw !important;
     }
-    form label{
+
+    form label {
         color: rgb(31, 192, 142);
     }
 }
 
 @media only screen and (max-width : 380px) {
-    .mybtn{
-        margin-left:0px;
-        margin-right:1vw;
+    .mybtn {
+        margin-left: 0px;
+        margin-right: 1vw;
+    }
+
+    article {
+        font-size: 8vw;
+        margin-left: 14vw;
     }
 }
