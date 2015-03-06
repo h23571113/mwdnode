@@ -219,7 +219,7 @@ function view_Edit() {
 function view_Exit() {
     var self = this;
     self.res.cookie('mwdcookie', "Deleted", new Date().add('day', -1));
-    self.view("Index");
+    self.view("index");
 }
 
 
