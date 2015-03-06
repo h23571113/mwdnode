@@ -184,9 +184,12 @@ function view_Edit() {
         assert.equal(null, err);
         var collection = db.collection('login');
 
-        console.log(model.id);
+        var idstring = model.id;
+        console.log(idstring);
+        var objid = ObjectID.createFromHexString(idstring);
+        console.log(objid);
 
-        collection.findOne({ '_id': model.id }, {}, function (err, docs) {
+        collection.findOne({ _id: objid }, {}, function (err, docs) {
             if (docs == null) {
                 self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
             }
