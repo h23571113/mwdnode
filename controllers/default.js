@@ -171,7 +171,7 @@ function view_Loggedin() {
                     self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
                 }
                 console.log("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["+docs+"]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
-                console.log("+++++++++++++++++++++++++++++++++"docs.toArray()+"+++++++++++++++++++++++++++++++++++++++");
+                console.log("+++++++++++++++++++++++++++++++++"+docs.toArray()+"+++++++++++++++++++++++++++++++++++++++");
                 
                 self.view('Login');
             }
