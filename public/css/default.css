@@ -207,6 +207,9 @@ article {
     #navigation li {
         font-size: 3vw;
     }
+    .content{
+        margin-top: 32vh;
+    }
 }
 
 @media only screen and (max-width : 480px) {
@@ -215,8 +218,5 @@ article {
     }
     form label{
         color: rgb(31, 192, 142);
-    }
-    .content{
-        margin-top: 32vh;
     }
 }
