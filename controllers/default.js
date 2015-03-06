@@ -82,7 +82,7 @@ function view_index() {
 
     //});
 
-    self.view('index');
+    //self.view('index');
 }
 
 function view_Register() {
