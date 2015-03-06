@@ -101,17 +101,35 @@ function view_Login() {
 
 function view_Loggedinget() {
     var self = this;
-    var connection = new sql.Connection(config, function (err) {
-        var request = connection.request();
-        request.query("select * from RegisterTBL where ID ='" + self.req.cookie('mwdcookie') + "'", function (err, editreturn) {
-            if (err)
-                self.view('Register', err.toString());
-            else {
-                var selfreturns = editreturn[0];
-                self.view("Show", selfreturns);
+
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('login');
+
+        var objid = ObjectID.createFromHexString(self.req.cookie('mwdcookie'));
+
+        collection.findOne({ _id: objid }, {}, function (err, docs) {
+            if (docs == null) {
+                self.view('Register', "رمز عبور و یاایمیل معتبر نیست ");
             }
+            else {
+                self.view('Show', docs);
+            }
+            db.close();
         });
     });
+
+    //var connection = new sql.Connection(config, function (err) {
+    //    var request = connection.request();
+    //    request.query("select * from RegisterTBL where ID ='" + self.req.cookie('mwdcookie') + "'", function (err, editreturn) {
+    //        if (err)
+    //            self.view('Register', err.toString());
+    //        else {
+    //            var selfreturns = editreturn[0];
+    //            self.view("Show", selfreturns);
+    //        }
+    //    });
+    //});
 }
 
 function view_Registered() {
@@ -184,10 +202,7 @@ function view_Edit() {
         assert.equal(null, err);
         var collection = db.collection('login');
 
-        var idstring = model.id;
-        console.log(idstring);
-        var objid = ObjectID.createFromHexString(idstring);
-        console.log(objid);
+        var objid = ObjectID.createFromHexString(model.id);
 
         collection.findOne({ _id: objid }, {}, function (err, docs) {
             if (docs == null) {
@@ -199,18 +214,6 @@ function view_Edit() {
             db.close();
         });
     });
-
-    //var connection = new sql.Connection(config, function (err) {
-    //    var request = connection.request();
-    //    request.query("select * from RegisterTBL where ID ='" + model.Id + "'", function (err, info) {
-    //        if (err)
-    //            self.view('Login', err.toString());
-    //        else {
-    //            var infos = info[0];
-    //            self.view('Edit', infos);
-    //        }
-    //    });
-    //});
 }
 
 function view_Exit() {
