@@ -160,7 +160,7 @@ function view_Loggedin() {
         assert.equal(null, err);
         var collection = db.collection('login');
 
-        collection.findOne({ 'email': model.email, 'password': model.pass }, function (err, docs) {
+        collection.findOne({ 'email': model.email, 'password': model.pass }, {}, function (err, docs) {
             if (docs == null) {
                 console.log("if");
                 self.view('Login', "رمز عبور و یاایمیل معتبر نیست ");
@@ -170,6 +170,7 @@ function view_Loggedin() {
                 if (model.check == "checked") {
                     self.res.cookie('mwdcookie', myinfo.ID.toString(), new Date().add('day', 1));
                 }
+                console.log("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["+docs+"]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
                 docs.toArray(function (err, items) {
                     console.log(items);
                 });
