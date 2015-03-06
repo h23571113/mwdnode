@@ -216,4 +216,7 @@ article {
     form label{
         color: rgb(31, 192, 142);
     }
+    .content{
+        margin-top: 32vh;
+    }
 }
