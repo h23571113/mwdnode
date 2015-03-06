@@ -1,7 +1,7 @@
 /*auto*/
-::selection{
-    background-color:#fa8144;
-    color:white;
+::selection {
+    background-color: #fa8144;
+    color: white;
 }
 
 @font-face {
@@ -193,13 +193,24 @@ article {
     color: #fa8144 !important;
 }
 
-.has-error .form-control{
+.has-error .form-control {
     border-color: #fa8144 !important;
+}
+
+#messages {
+    text-align: center;
+    color: rgb(31, 192, 142);
 }
 
 
 @media only screen and (max-width : 670px) {
     #navigation li {
         font-size: 3vw;
+    }
+}
+
+@media only screen and (min-width : 480px) {
+    #messages {
+        font-size: 6vw !important;
     }
 }
