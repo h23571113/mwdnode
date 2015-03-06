@@ -56,10 +56,10 @@ function view_index() {
         collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
             if (doc == null) {
                 // do whatever you need to do if it's not there
-                console.log('not found ');
+                self.view('Register', "این ایمیل قبلا نثبت شده");
             } else {
                 // do whatever you need to if it is there
-                console.log("founded");
+                self.view('Register', "این ایمیل قبلا ثبت شده");
             }
             db.close();
         });
