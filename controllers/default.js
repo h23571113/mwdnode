@@ -20,45 +20,45 @@ var url = "mongodb://mwdgroup:235711@ds051831.mongolab.com:51831/mwd";
 function view_index() {
     var self = this;
 
-    MongoClient.connect(url, function (err, db) {
-        assert.equal(null, err);
-        var collection = db.collection('login');
+    //MongoClient.connect(url, function (err, db) {
+    //    assert.equal(null, err);
+    //    var collection = db.collection('login');
 
-        //var cursor = collection.find({ 'id': '2' });
-        //var rows = 0;
+    //var cursor = collection.find({ 'id': '2' });
+    //var rows = 0;
 
-        //cursor.count(function (err, count) {
-        //    rows = count;
-        //});
-
-
-        //var result = cursor.toArray(function (err, items) {
-        //    for (var i = 0 ; i < rows; i++)
-        //        console.log(items[i].email);
-        //});
-
-        //collection.findOne({ 'id': '2' }, function (err, item) {
-        //    if (err)
-        //        console.log(err.toString());
-        //    else
-        //        console.log(item.toString());
-        //});
-
-        collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
-            if (doc == null) {
-                // do whatever you need to do if it's not there
-                console.log("no");
-                self.view('Register', "این ایمیل قبلا نثبت شده");
-            } else {
-                // do whatever you need to if it is there
-                console.log("yes");
-                self.view('Register', "این ایمیل قبلا ثبت شده");
-            }
-            db.close();
-        });
+    //cursor.count(function (err, count) {
+    //    rows = count;
+    //});
 
 
-    });
+    //var result = cursor.toArray(function (err, items) {
+    //    for (var i = 0 ; i < rows; i++)
+    //        console.log(items[i].email);
+    //});
+
+    //collection.findOne({ 'id': '2' }, function (err, item) {
+    //    if (err)
+    //        console.log(err.toString());
+    //    else
+    //        console.log(item.toString());
+    //});
+
+    //    collection.findOne({ 'email': 'hamed.h.1111@gmail.com' }, function (err, doc) {
+    //        if (doc == null) {
+    //            // do whatever you need to do if it's not there
+    //            console.log("no");
+    //            self.view('Register', "این ایمیل قبلا نثبت شده");
+    //        } else {
+    //            // do whatever you need to if it is there
+    //            console.log("yes");
+    //            self.view('Register', "این ایمیل قبلا ثبت شده");
+    //        }
+    //        db.close();
+    //    });
+
+
+    //});
     //});
 
 
@@ -82,7 +82,7 @@ function view_index() {
 
     //});
 
-    //self.view('index');
+    self.view('index');
 }
 
 function view_Register() {
@@ -126,7 +126,23 @@ function view_Registered() {
         collection.findOne({ 'email': model.email }, function (err, doc) {
             if (doc == null) {
                 // do whatever you need to do if it's not there
-                self.view('Register', "این ایمیل قبلا ثبت نشده");
+
+                collection.find().sort({ _id: -1 }, function (err, cursor) {
+                    if (err)
+                        self.view('Register', err.toString());
+                    else
+                        cursor.toArray(function (error, items) {
+                            id = (parseInt(items[0].id) + 1).toString();
+                            var doc = { 'id': id, 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
+                            collection.insert(doc, { w: 1 }, function (err, result) {
+                                if (err)
+                                    self.view('Register', err.toString());
+                                else
+                                    self.view('Register', "اطلاعات با موفقیت ثبت گردید");
+                            });
+                        });
+                });
+
             } else {
                 // do whatever you need to if it is there
                 self.view('Register', "این ایمیل قبلا ثبت شده");
@@ -134,51 +150,40 @@ function view_Registered() {
             db.close();
         });
 
-    //    collection.find().sort({ _id: -1 }, function (err, cursor) {
-    //        if (err)
-    //            console.log(err.toString());
-    //        else
-    //            cursor.toArray(function (error, items) {
-    //                id = parseInt(items[0].id) + 1;
-    //                var doc = { 'id': id, 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass };
-    //            });
-    //    });
 
-    //    collection.insert(doc, { w: 1 }, function (err, result) {
+
+
+        //    console.log(result.toString());
+        //});
+
+    });
+
+    //var connection = new sql.Connection(config, function (err) {
+    //    var request = connection.request();
+    //    request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "'", function (err, rows_numer) {
     //        if (err)
-    //            console.log(err.toString());
+    //            self.view('Register', err.toString());
+    //        else {
+    //            var num_of_rows = rows_numer[0].count;
+    //            if (num_of_rows == 0) {
+    //                request.query("INSERT INTO RegisterTBL (Name,Family,Email,Password) VALUES ('" + model.name + "','" + model.family + "','" + model.email + "','" + model.pass + "');", function (err, rows) {
+    //                    if (err) {
+    //                        self.view('Register', err.toString());
+    //                    }
+    //                    else {
+    //                        self.view('Register', "اطلاعات با موفقیت ثبت شد");
+    //                    }
+    //                });
+
+    //            }
+    //            else {
+    //                self.view('Register', "این ایمیل قبلا ثبت شده");
+    //            }
+
+    //        }
+
     //    });
-    //    console.log(result.toString());
     //});
-
-});
-
-//var connection = new sql.Connection(config, function (err) {
-//    var request = connection.request();
-//    request.query("select count(*) as count from RegisterTBL where Email ='" + model.email + "'", function (err, rows_numer) {
-//        if (err)
-//            self.view('Register', err.toString());
-//        else {
-//            var num_of_rows = rows_numer[0].count;
-//            if (num_of_rows == 0) {
-//                request.query("INSERT INTO RegisterTBL (Name,Family,Email,Password) VALUES ('" + model.name + "','" + model.family + "','" + model.email + "','" + model.pass + "');", function (err, rows) {
-//                    if (err) {
-//                        self.view('Register', err.toString());
-//                    }
-//                    else {
-//                        self.view('Register', "اطلاعات با موفقیت ثبت شد");
-//                    }
-//                });
-
-//            }
-//            else {
-//                self.view('Register', "این ایمیل قبلا ثبت شده");
-//            }
-
-//        }
-
-//    });
-//});
 }
 
 function view_Loggedin() {
