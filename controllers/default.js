@@ -5,6 +5,7 @@
     F.route('/Registered', view_Registered, ['post']);
     F.route('/Loggedin', view_Loggedin, ['post']);
     F.route('/Loggedin', view_Loggedinget, ['get']);
+    F.route('/Edited', view_Edited, ['post']);
     F.route('/Edit', view_Edit, ['post']);
     F.route('/Exit', view_Exit);
     // or
@@ -147,6 +148,27 @@ function view_Edit() {
             }
             else {
                 self.view('Edit', docs);
+            }
+            db.close();
+        });
+    });
+}
+
+function view_Edited() {
+    var self = this;
+    var model = self.post;
+
+    MongoClient.connect(url, function (err, db) {
+        assert.equal(null, err);
+        var collection = db.collection('login');
+
+        var objid = ObjectID.createFromHexString(model.id);
+
+        collection.update({ _id: objid }, { 'email': model.email, 'name': model.name, 'family': model.family, 'password': model.pass }, function (err , docs) {
+            if (err)
+                self.view('Login', err.toString());
+            else {
+                self.view('Login', "اطلاعات با موفقیت تغییر یافت");
             }
             db.close();
         });
