@@ -6,12 +6,12 @@
 
 @font-face {
     font-family: "mwdgroup.ir";
-    src: url('/font/mwdgroup.ir.ttf') format('truetype'), url('/font/mwdgroup.ir.otf') format('opentype');
+    src: url('font/mwdgroup.ir.ttf') format('truetype'), url('/font/mwdgroup.ir.otf') format('opentype');
 }
 
 @font-face {
     font-family: "mwdgroup";
-    src: url('/font/Kaiju.ttf') format('truetype'),url('/font/Kaiju.woff') format('woff');
+    src: url('font/Kaiju.ttf') format('truetype'),url('/font/Kaiju.woff') format('woff');
 }
 
 body {
@@ -60,7 +60,7 @@ a {
 .content {
     width: 400px;
     margin: auto;
-    margin-top: 45vh;
+      margin-top: 4%;
 }
 
 [data-effect=pure-effect-scaleRotate] .pure-pusher-container .pure-pusher {
@@ -78,7 +78,7 @@ li {
 
 
 .pure-pusher {
-    background-image: url('/img/bk.jpg');
+    background-image: url('img/bk.jpg');
     background-size: cover;
     background-position-y: 99%;
 }
@@ -178,10 +178,8 @@ footer {
 
 
 article {
-    position: absolute;
     color: #1fc08e;
     font-size: 6vw;
-    margin-left: 25vw;
     font-family: "mwdgroup";
 }
 
@@ -203,6 +201,21 @@ article {
     color: rgb(31, 192, 142);
 }
 
+.ngapp {
+    height: 100%;
+}
+
+td, tr {
+    color: #1fc08e;
+    font-size: 18px;
+}
+
+#spalbl{
+    text-align:center;
+}
+#spalbl:nth-child(1){
+    font-size: 5vw;
+}
 
 @media only screen and (max-width : 670px) {
     #navigation li {
@@ -210,7 +223,7 @@ article {
     }
 
     .content {
-        margin-top: 32vh;
+        margin-top: 25vh;
     }
 }
 
@@ -225,7 +238,6 @@ article {
 
     article {
         font-size: 8vw;
-        margin-left: 14vw;
     }
 }
 

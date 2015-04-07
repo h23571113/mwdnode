@@ -1,11 +1,32 @@
 ﻿@{meta('نمایش مشخصات', 'Description (optional)', 'Keywords (optional)')}
 
-<a href="/Exit">خروج</a>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@{model.name}</td>
+                    <td>@{model.family}</td>
+                    <td>@{model.email}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form role="form" method="post" action="/Edit">
+                            <button type="submit" name="id" value="@{model._id}" class="btn btn-default">ویرایش اطلاعات</button>
+                        </form>
+                    </td>
+                    <td></td>
+                    <td><a class="btn btn-primary " href="/Exit">خروج</a></td>
+                </tr>
 
-<label class="label label-primary">@{model.name}</label>
-<h1 class="label label-primary">@{model.family}</h1>
-<h1 class="label label-primary">@{model.email}</h1>
-
-<form role="form" method="post" action="/Edit">
-    <button type="submit" name="id" value="@{model._id}" class="btn btn-default col-sm-2 col-lg-2 col-xs-6 col-md-2">ثبت</button>
-</form>
+            </tbody>
+        </table>
+    </div>
+</div>
