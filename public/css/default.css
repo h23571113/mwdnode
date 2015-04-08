@@ -78,7 +78,7 @@ li {
 
 
 .pure-pusher {
-    background-image: url('img/bk.jpg');
+    background-image: url('/img/bk.jpg');
     background-size: cover;
     background-position-y: 99%;
 }
@@ -181,6 +181,7 @@ article {
     color: #1fc08e;
     font-size: 6vw;
     font-family: "mwdgroup";
+    text-align:center;
 }
 
 .has-error .help-block {
