@@ -60,7 +60,7 @@ a {
 .content {
     width: 400px;
     margin: auto;
-      margin-top: 4%;
+    margin-top: 4%;
 }
 
 [data-effect=pure-effect-scaleRotate] .pure-pusher-container .pure-pusher {
@@ -181,7 +181,7 @@ article {
     color: #1fc08e;
     font-size: 6vw;
     font-family: "mwdgroup";
-    text-align:center;
+    text-align: center;
 }
 
 .has-error .help-block {
@@ -211,11 +211,27 @@ td, tr {
     font-size: 18px;
 }
 
-#spalbl{
-    text-align:center;
+#spalbl {
+    text-align: center;
 }
-#spalbl:nth-child(1){
-    font-size: 5vw;
+
+    #spalbl:nth-child(1) {
+        font-size: 5vw;
+    }
+
+h1 {
+    font-size: 36px;
+    width: 100%;
+    text-align: center;
+    color: rgb(250, 129, 68);
+    margin-right: 25vw;
+}
+
+@media only screen and (max-width : 768px) {
+    h1 {
+        margin-right: 2vw;
+        font-size: 6vw;
+    }
 }
 
 @media only screen and (max-width : 670px) {
